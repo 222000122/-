@@ -6,7 +6,6 @@
 <title>雪糕价格在线查询</title>
 <link rel="stylesheet" href="css/frozenui.css">
 <link rel="stylesheet" href="css/login.css">
-<link rel="stylesheet" href="css/base.css" />
 
 </head>
 <body>
@@ -25,8 +24,8 @@
 		<img src="img/2.png"  width="250" height="250" alt="">
 	</div>
 	<form class="loginForm">
-		<a href="javacsript:;" class="botton" id="loginA">添加雪糕信息</a>
-		<a href="javacsript:;" class="botton" id="loginB">查询雪糕信息</a>
+		<a href="#" class="botton" id="loginA">添加雪糕信息</a>
+		<a href="#" class="botton" id="loginB">查询雪糕信息</a>
 	</form>
 	<div id="fig2">
 		<img src="img/3.png"  width="250" height="250" alt="">
@@ -34,31 +33,39 @@
 </div>
 <div class="login">
 	<div class="title">
-		<p>添加雪糕信息
-			<a href="javascript:;" id="close1">关闭</a>
-		</p>
+		添加雪糕信息 <a herf="#" id="close"><span id="loc">关闭</span></a>
 	</div>
 	<div class="content">
-		<p><input type="text" class="tt" placeholder="请输入雪糕的名称：" lay-verify="required" /></p>
-		<p><input type="text" class="tt" placeholder="请输入雪糕的品牌：" lay-verify="required"/></p>
-		<p><input type="text" class="tt" placeholder="请输入雪糕的净含量" lay-verify="required" /></p>
-		<p><input type="text"  class="tt" placeholder="请输入雪糕的口味" lay-verify="required" /></p>
-		<p><input type="text" class="tt" placeholder="请输入雪糕的净含量" lay-verify="required" /></p>
-		<p><input type="text" class="tt" placeholder="请输入您购买的该雪糕的价格（选填）"/></p>
-		<p><input type="botton" class="green" id="submit_btn" value="提交"/></p>
+		<p><input type="text" id="name" class="tt" placeholder="请输入雪糕的名称：" lay-verify="required" /></p>
+		<p><input type="text" id="brand"class="tt" placeholder="请输入雪糕的品牌：" lay-verify="required"/></p>
+		<p><input type="text" id="taste" class="tt" placeholder="请输入雪糕的口味" lay-verify="required" /></p>
+		<p><input type="text" id="spe" class="tt" placeholder="请输入雪糕的净含量" lay-verify="required" /></p>
+		<p><input type="text" id="price" class="tt" placeholder="请输入您购买该雪糕所需要的价格" lay-verify="required"/></p>
+		<p><input type="button" value="提交" id="submit_btn" class="green" /></p>
 	</div>
 </div>
 <div class="bg"></div>
 <div class="login2">
 	<div class="title2">
-		查询雪糕信息 <a href="javascript:;" id="close2">关闭</a>
+		查询雪糕信息 <a herf="#" id="close2">关闭</a>
 	</div>
 	<div class="content2">
-		<p><input type="text" class="tt2" placeholder="请输入雪糕的名称：" lay-verify="required" /></p>
-		<p><input type="botton" class="purple" id="submit_btn2" value="提交"/></p>
+		<p><input type="text" id="i_name" class="tt2" placeholder="请输入雪糕的名称：" lay-verify="required" /></p>
+		<p><input type="button" value="提交" id="submit_btn2" class="purple" /></p>
 	</div>
+	<table border="1" id="my_t">
+		<tr>
+			<th>id</th>
+			<th>name</th>
+			<th>brand</th>
+			<th>taste</th>
+			<th>specification</th>
+			<th>price</th>
+		</tr>
+	</table>
 </div>
 <div class="bg2"></div>
+<script src="js/jquery-3.6.1.js"></script>
 <script type="text/javascript">
 	/*
 	添加雪糕信息
@@ -128,7 +135,56 @@
 			document.removeEventListener("mousemove", move);
 		})
 	})
+	/*
+		向后端获取数据
+	 */
+	//通过POST方法添加雪糕信息
+	$("#submit_btn").click(function () {
+		let myname=$("#name").val();
+		let mybranch=$("#brand").val();
+		let mytaste=$("#taste").val();
+		let myspe=$("#spe").val();
+		let myprice=$("#price").val();
+		var data={
+			"name":myname,
+			"branch":mybranch,
+			"taste":mytaste,
+			"specification":myspe,
+			"price":myprice
+		}
+		$.ajax({
+			url:"http://www.tzdian.top:8080/xue-gao/",
+			type:"POST",
+			data:JSON.stringify(data),
+			contentType: 'application/json;charset=UTF-8',
+			success:function () {
+				alert("添加雪糕信息成功！");
+			},
+			error:function () {
+				alert("添加雪糕信息失败！");
+			}
+		})
+	})
+	//通过GET方法查询雪糕信息
+	$("#submit_btn2").click(function () {
+		let m_name=$("#i_name").val();
+		$.ajax({
+			url:"http://www.tzdian.top:8080/xue-gao/"+m_name,
+			type:"GET",
+			dataType:"json",
+			success:function (jsonlist) {
+				alert("查询雪糕信息成功！");
+				var str="";
+				for(var i=0;i<jsonlist.length;i++) {
+					str="<tr><th>"+jsonlist[i].id+"</th><th>"+jsonlist[i].name+"</th><th>"+jsonlist[i].branch+"</th><th>"+jsonlist[i].taste+"</th><th>"+jsonlist[i].specification+"</th><th>"+jsonlist[i].price+"</th></tr>"
+				}
+				$("#my_t").append(str);
+			},
+			error:function () {
+				alert("查询雪糕信息失败！");
+			}
+		})
+	})
 </script>
 </body>
 </html>
-

@@ -28,6 +28,7 @@ body {
 	box-sizing: border-box;
 	overflow:hidden;
 }
+/*标题*/
 .span1{
 	font-size: 30px;
 	overflow: visible;
@@ -51,7 +52,7 @@ body {
 		background-position: -100%  0;
 	}
 }
-/* 登录 */
+/*主界面*/
 .c-login{
 	width: 300px;
 	height: 300px;
@@ -90,11 +91,11 @@ body {
 }
 #loginA{
 	position: relative;
-	top:30px;
+	top:40px;
 }
 #loginB{
 	position: relative;
-	top:60px;
+	top:70px;
 }
 #loginA:hover{
 	background-color: #ff4222;
@@ -112,10 +113,7 @@ body {
 	top:50px;
 	left:400px;
 }
-/*登录弹框*/
-#close {
-
-}
+/*北京*/
 .bg {
 	width: 100%;
 	height: 100%;
@@ -138,8 +136,8 @@ body {
 }
 /* 登录弹框 */
 .login {
-	width: 600px;
-	height: 500px;
+	width: 500px;
+	height: 360px;
 	position: fixed;
 	margin:auto;
 	top: 50%;
@@ -150,8 +148,8 @@ body {
 	display: none;
 }
 .login2{
-	width: 400px;
-	height: 300px;
+	width: 600px;
+	height: 650px;
 	position: fixed;
 	margin:auto;
 	top: 50%;
@@ -168,6 +166,7 @@ body {
 	text-align: center;
 	border-bottom: 1px solid #DCDCDC;
 	position: relative;
+	cursor: move;
 	font-family: "新宋体";
 }
 .title2 {
@@ -182,11 +181,11 @@ body {
 /* 登录框表单 */
 .content p {
 	text-align: center;
-	line-height:50px;
+	line-height:40px;
 }
 .content2 p {
 	text-align: center;
-	line-height:50px;
+	line-height:40px;
 }
 /* 关闭登录弹框 */
 .title2 a {
@@ -206,9 +205,13 @@ body {
 	-webkit-appearance:none;
 	border-radius:2px;
 }
+#loc{
+	position: relative;
+	left:175px;
+}
 .tt2{
 	position: relative;
-	top:10px;
+	top:0px;
 	display: block;
 	border:none;
 	border-bottom: 1px solid rgb(215,215,215);
@@ -230,14 +233,6 @@ body {
 	background-image: linear-gradient(to right, #6253e1, #852D91);
 	box-shadow: 0 4px 15px 0 rgba(236, 116, 149, 0.75);
 }
-
-.purple:hover:before {
-	background-position: left bottom;
-}
-
-.green:hover:before {
-	background-position: left bottom;
-}
 #submit_btn{
 	text-decoration: none;
 	text-align: center;
@@ -246,11 +241,17 @@ body {
 	border-radius: 20px;
 	width: 150px;
 	height:40px;
-	font-size: 25px;
+	font-size: 20px;
+}
+#submit_btn:hover{
+	color:darkorange;
+}
+#submit_btn2:hover{
+	color:darkorange;
 }
 #submit_btn2{
 	position:relative;
-	top:20px;
+	top:1px;
 	text-decoration: none;
 	text-align: center;
 	padding: 8px 0px 8px 0px;
@@ -258,7 +259,11 @@ body {
 	border-radius: 20px;
 	width: 150px;
 	height:40px;
-	font-size: 25px;
+	font-size: 20px;
+}
+#my_t {
+	position: relative;
+	left:155px;
 }
 /*云朵动画*/
 .sky {
